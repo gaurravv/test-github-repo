@@ -15,42 +15,44 @@
  */
 package com.mysite.core.listeners;
 
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.util.Collections;
 import java.util.List;
-
 import org.apache.sling.api.SlingConstants;
 import org.junit.jupiter.api.Test;
 import org.osgi.service.event.Event;
-
 import uk.org.lidalia.slf4jext.Level;
 import uk.org.lidalia.slf4jtest.LoggingEvent;
 import uk.org.lidalia.slf4jtest.TestLogger;
 import uk.org.lidalia.slf4jtest.TestLoggerFactory;
 
-import static org.junit.jupiter.api.Assertions.assertAll;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 class SimpleResourceListenerTest {
 
-    private SimpleResourceListener fixture = new SimpleResourceListener();
+  private SimpleResourceListener fixture = new SimpleResourceListener();
 
-    private TestLogger logger = TestLoggerFactory.getTestLogger(fixture.getClass());
+  private TestLogger logger =
+      TestLoggerFactory.getTestLogger(fixture.getClass());
 
-    @Test
-    void handleEvent() {
-        Event resourceEvent = new Event("event/topic", Collections.singletonMap(SlingConstants.PROPERTY_PATH, "/content/test"));
+  @Test
+  void handleEvent() {
+    Event resourceEvent = new Event(
+        "event/topic", Collections.singletonMap(SlingConstants.PROPERTY_PATH,
+                                                "/content/test"));
 
-        fixture.handleEvent(resourceEvent);
+    fixture.handleEvent(resourceEvent);
 
-        List<LoggingEvent> events = logger.getLoggingEvents();
-        assertEquals(1, events.size());
-        LoggingEvent event = events.get(0);
+    List<LoggingEvent> events = logger.getLoggingEvents();
+    assertEquals(1, events.size());
+    LoggingEvent event = events.get(0);
 
-        assertAll(
-                () -> assertEquals(Level.DEBUG, event.getLevel()),
-                () -> assertEquals(2, event.getArguments().size()),
-                () -> assertEquals("event/topic", event.getArguments().get(0)),
-                () -> assertEquals("/content/test", event.getArguments().get(1))
-        );
-    }
+    assertAll(()
+                  -> assertEquals(Level.DEBUG, event.getLevel()),
+              ()
+                  -> assertEquals(2, event.getArguments().size()),
+              ()
+                  -> assertEquals("event/topic", event.getArguments().get(0)),
+              () -> assertEquals("/content/test", event.getArguments().get(1)));
+  }
 }
