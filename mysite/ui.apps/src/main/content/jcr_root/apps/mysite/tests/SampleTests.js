@@ -13,16 +13,16 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-new hobs.TestSuite("My Site Tests", {path:"/apps/mysite/tests/SampleTests.js", register: true})
+new hobs
+    .TestSuite("My Site Tests",
+               {path : "/apps/mysite/tests/SampleTests.js", register : true})
 
     .addTestCase(new hobs.TestCase("Hello World component on english page")
-        .navigateTo("/content/mysite/en.html")
-        .asserts.location("/content/mysite/en.html", true)
-        .asserts.visible(".helloworld", true)
-    )
+                     .navigateTo("/content/mysite/en.html")
+                     .asserts.location("/content/mysite/en.html", true)
+                     .asserts.visible(".helloworld", true))
 
     .addTestCase(new hobs.TestCase("Hello World component on french page")
-        .navigateTo("/content/mysite/fr.html")
-        .asserts.location("/content/mysite/fr.html", true)
-        .asserts.visible(".helloworld", true)
-    );
+                     .navigateTo("/content/mysite/fr.html")
+                     .asserts.location("/content/mysite/fr.html", true)
+                     .asserts.visible(".helloworld", true));
