@@ -1,5 +1,3 @@
-# Pull Request Template
-
 ### Jira ticket: (or Story/Bugfix Link)
 Please pass the requirement information link which are related to this PR here
 
