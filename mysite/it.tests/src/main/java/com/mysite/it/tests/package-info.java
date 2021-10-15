@@ -13,7 +13,6 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-@Version("1.0")
-package com.mysite.it.tests;
+@Version("1.0") package com.mysite.it.tests;
 
 import org.osgi.annotation.versioning.Version;
